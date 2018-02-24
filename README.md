@@ -5,11 +5,7 @@ _maintained by MarvAmBass_
 
 ## What is it
 
-This Dockerfile (available as ___marvambass/nginx-ssl-secure___) gives you a ready to use secured production nginx server, with perfectly configured SSL. You should get a A+ Rating at the Qualys SSL Test.
-
-View in Docker Registry [marvambass/nginx-ssl-secure](https://registry.hub.docker.com/u/marvambass/nginx-ssl-secure/)
-
-View in GitHub [MarvAmBass/docker-nginx-ssl-secure](https://github.com/MarvAmBass/docker-nginx-ssl-secure)
+This Dockerfile gives you a ready to use secured production nginx server with phpBB running on it, with perfectly configured SSL. You should get a A+ Rating at the Qualys SSL Test.
 
 ## Environment variables and defaults
 
@@ -30,9 +26,13 @@ _If you forget the dh.pem file, it will be created at the first start - but this
 	--restart always \
 	nginxphpbb
 
+## Build the image locally
+
+sudo docker build . -f Dockerfile -t nginxphpbb
+	
 ## Based on
 
-This Dockerfile bases on the [/\_/nginx/](https://registry.hub.docker.com/_/nginx/) Official Image.
+This Dockerfile bases on the [/\_/nginx/](https://registry.hub.docker.com/_/nginx/) Official Image and [MarvAmBass/docker-nginx-ssl-secure](https://github.com/MarvAmBass/docker-nginx-ssl-secure).
 
 ## Cheat Sheet
 
