@@ -22,7 +22,7 @@ _If you forget the dh.pem file, it will be created at the first start - but this
     docker run -d \
 	-p 443:443 \
 	-e 'DH_SIZE=4096' \
-	-v /opt/Docker/nginx-phpBB/www-data:/var/www/ \
+	-v /opt/Docker/nginx-phpBB/www-data:/usr/share/nginx/html/ \
 	--restart always \
 	--name nginxphpbb \
 	nginxphpbb

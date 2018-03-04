@@ -8,12 +8,12 @@ RUN apt-get update; \
 
 RUN wget https://www.phpbb.com/files/release/phpBB-3.2.2.zip
 
-RUN mkdir -p /var/www/
+RUN mkdir -p /usr/share/nginx/html
 
-RUN unzip phpBB-3.2.2.zip -d /var/www/; \
+RUN unzip phpBB-3.2.2.zip -d /usr/share/nginx/html; \
 	rm phpBB-3.2.2.zip
 
-RUN cd /var/www/phpBB3; \
+RUN cd /usr/share/nginx/html/phpBB3; \
 	chmod 666 config.php; \
 	chmod 777 store/; \
 	chmod 777 cache/; \
@@ -22,8 +22,7 @@ RUN cd /var/www/phpBB3; \
 
 ENV LANG C.UTF-8
 
-RUN rm -rf /etc/nginx/conf.d/*; \
-    mkdir -p /etc/nginx/external
+RUN rm -rf /etc/nginx/conf.d/*;
 
 RUN sed -i 's/access_log.*/access_log \/dev\/stdout;/g' /etc/nginx/nginx.conf; \
     sed -i 's/error_log.*/error_log \/dev\/stdout info;/g' /etc/nginx/nginx.conf; \
@@ -34,6 +33,8 @@ ADD ssl.conf /etc/nginx/conf.d/ssl.conf
 
 ADD entrypoint.sh /opt/entrypoint.sh
 RUN chmod a+x /opt/entrypoint.sh
+
+VOLUME /usr/share/nginx/html
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
 CMD ["nginx"]
