@@ -1,5 +1,5 @@
 # Docker very secured Nginx with secure SSL
-_maintained by MarvAmBass_
+_maintained by SepPenner_
 
 [FAQ - All you need to know about the marvambass Containers](https://marvin.im/docker-faq-all-you-need-to-know-about-the-marvambass-containers/)
 
@@ -21,7 +21,7 @@ _If you forget the dh.pem file, it will be created at the first start - but this
 
     docker run -d \
 	-p 443:443 \
-	-e 'DH_SIZE=4096' \
+	-e 'DH_SIZE=2048' \
 	-v /opt/Docker/nginx-phpBB/www-data:/usr/share/nginx/html/ \
 	--restart always \
 	--name nginxphpbb \
@@ -37,17 +37,17 @@ This Dockerfile bases on the [/\_/nginx/](https://registry.hub.docker.com/_/ngin
 
 ## Cheat Sheet
 
-### Creating the dh4096.pem with openssl
+### Creating the dh2048.pem with openssl
 
 To create a Diffie-Hellman cert, you can use the following command
 
-    openssl dhparam -out dh4096.pem 4096
+    openssl dhparam -out dh2048.pem 2048
 
 ### Creating a high secure SSL CSR with openssl
 
 This cert might be incompatible with Windows 2000, XP and older IE Versions
 
-    openssl req -nodes -new -newkey rsa:4096 -out csr.pem -sha256
+    openssl req -nodes -new -newkey rsa:2048 -out csr.pem -sha256
 
 ### Creating a self-signed ssl cert
 

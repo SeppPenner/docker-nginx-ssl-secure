@@ -24,7 +24,7 @@ then
 fi
 
 
-DH="/etc/nginx/external/dh.pem"
+DH="/usr/share/nginx/html/dh.pem"
 
 if [ ! -e "$DH" ]
 then
@@ -36,18 +36,18 @@ then
   openssl dhparam -out "$DH" $DH_SIZE
 fi
 
-if [ ! -e "/etc/nginx/external/cert.pem" ] || [ ! -e "/etc/nginx/external/key.pem" ]
+if [ ! -e "/usr/share/nginx/html/cert.pem" ] || [ ! -e "/usr/share/nginx/html/key.pem" ]
 then
   echo ">> generating self signed cert"
   openssl req -x509 -newkey rsa:4086 \
   -subj "/C=XX/ST=XXXX/L=XXXX/O=XXXX/CN=localhost" \
-  -keyout "/etc/nginx/external/key.pem" \
-  -out "/etc/nginx/external/cert.pem" \
+  -keyout "/usr/share/nginx/html/key.pem" \
+  -out "/usr/share/nginx/html/cert.pem" \
   -days 3650 -nodes -sha256
 fi
 
-echo ">> copy /etc/nginx/external/*.conf files to /etc/nginx/conf.d/"
-cp /etc/nginx/external/*.conf /etc/nginx/conf.d/ 2> /dev/null > /dev/null
+echo ">> copy /usr/share/nginx/html/*.conf files to /etc/nginx/conf.d/"
+cp /usr/share/nginx/html/*.conf /etc/nginx/conf.d/ 2> /dev/null > /dev/null
 
 # exec CMD
 echo ">> exec docker CMD"
