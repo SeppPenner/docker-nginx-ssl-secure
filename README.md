@@ -22,8 +22,9 @@ _If you forget the dh.pem file, it will be created at the first start - but this
     docker run -d \
 	-p 443:443 \
 	-e 'DH_SIZE=4096' \
-	-v $EXT_DIR:/etc/nginx/external/ \
+	-v /opt/Docker/nginx-phpBB/www-data:/var/www/ \
 	--restart always \
+	--name nginxphpbb \
 	nginxphpbb
 
 ## Build the image locally
